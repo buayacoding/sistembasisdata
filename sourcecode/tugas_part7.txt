@@ -1,0 +1,19 @@
+SQL> SELECT penjualan.no_struk AS "NOMER STRUK", 
+kasir.nama AS "NAMA KASIR", 
+member.nama AS "NAMA MEMBER", 
+data_barang.nama_barang AS "NAMA BARANG",
+kategori.kategori, 
+detil_jual.harga, 
+detil_jual.jumlah, 
+detil_jual.harga*detil_jual.jumlah AS TOTAL
+FROM penjualan INNER JOIN detil_jual 
+ON  penjualan.no_struk = detil_jual.no_struk
+INNER JOIN kasir 
+ON kasir.id_kasir = penjualan.id_kasir
+INNER JOIN member 
+ON member.id_member = penjualan.id_member
+INNER JOIN data_barang 
+ON data_barang.kode_barang = detil_jual.kode_barang
+INNER JOIN kategori 
+ON kategori.kode = data_barang.kategori
+WHERE kasir.id_kasir = 'A201003';
